@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36" version="28.2.7">
+  <diagram name="CQRS Shopping Item" id="0">
+    <mxGraphModel dx="3021" dy="1195" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2" value="Command Side (Write Model - PostgreSQL)" style="rounded=1;fillColor=#add8e6;strokeColor=#000000;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="-540" y="600" width="400" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Command API" style="rounded=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1" parent="2" vertex="1">
+          <mxGeometry x="80" y="31" width="240" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Command Handler" style="rounded=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1" parent="2" vertex="1">
+          <mxGeometry x="80" y="124" width="240" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="2" source="5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200.53846153846143" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" value="PostgreSQL&#xa;(Items, Categories)" style="rounded=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1" parent="2" vertex="1">
+          <mxGeometry x="80" y="216.99999999999997" width="240" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;" parent="2" source="3" target="4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;" parent="2" source="4" target="5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="8" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="RabbitMQ (Event Bus)" style="ellipse;fillColor=#ffa500;strokeColor=#000000;fontStyle=1;fontColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="-59" y="823.5" width="159" height="82.5" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="Query Side (Read Model - MongoDB)" style="rounded=1;fillColor=#90ee90;strokeColor=#000000;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="190" y="600" width="380" height="310" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="Event Consumer" style="rounded=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1" parent="10" vertex="1">
+          <mxGeometry x="76.00000000000001" y="31.000000000000007" width="228.00000000000003" height="62.000000000000014" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="10" source="12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="344.11111111111114" y="352.75862068965523" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="12" value="MongoDB (items_read_model)" style="rounded=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1" parent="10" vertex="1">
+          <mxGeometry x="76.00000000000001" y="124.00000000000003" width="228.00000000000003" height="62.000000000000014" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Query Handler" style="rounded=1;fillColor=#ffffff;strokeColor=#000000;fontStyle=1" parent="10" vertex="1">
+          <mxGeometry x="76.00000000000001" y="217.00000000000003" width="228.00000000000003" height="62.000000000000014" as="geometry" />
+        </mxCell>
+        <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;" parent="10" source="11" target="12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;endArrow=block;" parent="10" source="13" target="12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="evj8kjxZa9wXfUXXHRHB-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-360" y="590" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-360" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-27" value="&lt;b&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;POST, PUT, PATCH, DELETE Methods&lt;/font&gt;&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="evj8kjxZa9wXfUXXHRHB-24">
+          <mxGeometry x="0.4255" y="-3" relative="1" as="geometry">
+            <mxPoint y="6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-17" value="Incoming HTTP Request" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="-66" y="330" width="260" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.583;entryY=-0.007;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="evj8kjxZa9wXfUXXHRHB-17" target="10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-26" value="&lt;font style=&quot;font-size: 12px;&quot;&gt;&lt;b&gt;GET Method&lt;/b&gt;&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="evj8kjxZa9wXfUXXHRHB-25">
+          <mxGeometry x="0.2329" relative="1" as="geometry">
+            <mxPoint y="31" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="1004" as="targetPoint" />
+            <mxPoint x="-304" y="1004" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-38" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;In- Sync&lt;/font&gt;&lt;/b&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="evj8kjxZa9wXfUXXHRHB-37">
+          <mxGeometry x="-0.1651" y="2" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-33" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/databases/Azure_Database_PostgreSQL_Server.svg;" vertex="1" parent="1">
+          <mxGeometry x="-362" y="972" width="48" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-36" value="" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.mongodb" vertex="1" parent="1">
+          <mxGeometry x="515" y="960.9" width="41.2" height="86.2" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-39" value="" style="html=1;shadow=0;dashed=0;align=center;verticalAlign=middle;shape=mxgraph.arrows2.arrow;dy=0.6;dx=40;direction=south;notch=0;" vertex="1" parent="1">
+          <mxGeometry x="32" y="150" width="70" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-40" value="" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.management_console;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="36" y="69" width="63" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="evj8kjxZa9wXfUXXHRHB-41" value="&lt;h1&gt;&lt;font style=&quot;font-size: 32px;&quot;&gt;CQRS Architecture — Shopping Item Service (Node.js + PostgreSQL + RabbitMQ + MongoDB)&lt;/font&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-630" y="110" width="460" height="100" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
