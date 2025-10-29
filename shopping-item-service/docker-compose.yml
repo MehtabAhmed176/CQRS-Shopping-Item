@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # 🧩 Command Service (Write side)
+  command-service:
+    build: ./command-service
+    container_name: command-service
+    restart: always
+    ports:
+      - "4001:4001"
+    env_file:
+      - ./command-service/.env
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      - cqrs-net
+
+  # 🔍 Query Service (Read side)
+  query-service:
+    build: ./query-service
+    container_name: query-service
+    restart: always
+    ports:
+      - "4002:4002"
+    env_file:
+      - ./query-service/.env
+    depends_on:
+      - rabbitmq
+      - mongo
+    networks:
+      - cqrs-net
+
+  # 🗄 PostgreSQL (Command DB)
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: commanddb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - cqrs-net
+
+  # 🍃 MongoDB (Query DB)
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - cqrs-net
+
+  # 🐇 RabbitMQ (Event Bus)
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"   # AMQP
+      - "15672:15672" # Management UI
+    networks:
+      - cqrs-net
+
+# 🌐 Shared network for all services
+networks:
+  cqrs-net:
+    driver: bridge
+
+# 💾 Persistent volumes
+volumes:
+  pgdata:
+  mongodata:
