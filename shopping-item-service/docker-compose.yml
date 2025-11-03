@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.9"
 
 services:
   # 🧩 Command Service (Write side)
@@ -33,16 +33,18 @@ services:
 
   # 🗄 PostgreSQL (Command DB)
   postgres:
-    image: postgres:14
+    image: postgres:16
     container_name: postgres
+    restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: commanddb
-    ports:
-      - "5432:5432"
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
     networks:
       - cqrs-net
 
@@ -50,6 +52,7 @@ services:
   mongo:
     image: mongo:6
     container_name: mongo
+    restart: always
     ports:
       - "27017:27017"
     volumes:
@@ -59,13 +62,15 @@ services:
 
   # 🐇 RabbitMQ (Event Bus)
   rabbitmq:
-    image: rabbitmq:3-management
+    image: rabbitmq:3-management   # ✅ includes the web UI
     container_name: rabbitmq
+    restart: always
     ports:
       - "5672:5672"   # AMQP
       - "15672:15672" # Management UI
     networks:
       - cqrs-net
+
 
 # 🌐 Shared network for all services
 networks:

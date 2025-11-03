@@ -1,13 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({ name: 'items' })
 export class Item {
-  @PrimaryGeneratedColumn('uuid')
-  id!: string;
+  @PrimaryGeneratedColumn() // ✅ auto-increment integer
+  itemId!: number;
 
-  @Column()
+  @Column({ nullable: false })
   name!: string;
 
-  @Column('decimal')
+  @Column('decimal', { nullable: false })
   price!: number;
+
+  @UpdateDateColumn({ type: 'timestamp', nullable: true })
+  updatedAt!: Date;
 }
+
+

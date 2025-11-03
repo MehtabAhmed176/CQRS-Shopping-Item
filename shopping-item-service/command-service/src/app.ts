@@ -6,6 +6,6 @@ import itemRoutes from '../src/routes/item.routes';
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/api/items', itemRoutes);
+app.use('/api/command/items', itemRoutes);
 
 export default app;

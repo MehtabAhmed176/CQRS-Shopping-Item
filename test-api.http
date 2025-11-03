@@ -3,10 +3,34 @@ POST http://localhost:3000/api/command/items
 Content-Type: application/json
 
 {
+  "itemId": "1",
+  "name": "Google Fitbit",
+  "price": 200
+}
+
+### Create Item (Command Service Direcly)
+POST http://localhost:4001/api/command/items
+Content-Type: application/json
+
+{
+  "itemId": "1",
   "name": "Camping Tent",
   "price": 99.99
 }
 
-### Get Items (Query Service)
+
+### Get Items (Query Service - API GATEWAY)
 GET http://localhost:3000/api/query/items
+kp
+
+### Get Items (Query Service - API GATEWAY)
+GET http://localhost:3000/api/query/items/1
+kp
+
+### Get Items (Query Service Direclty)
+GET http://localhost:4002/api/query/items
+
+### Get Items (Query Service Direclty)
+GET http://localhost:4002/api/query/items/2
+kp
 kp
